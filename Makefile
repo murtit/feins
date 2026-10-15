@@ -2,15 +2,15 @@ SIMULATOR ?= iPhone 17 Pro
 
 .PHONY: project open test icon
 
-## Xcode-Projekt aus project.yml erzeugen (braucht: brew install xcodegen)
+## Xcode-Projekt nach Änderungen an project.yml neu erzeugen (braucht: brew install xcodegen)
 project:
 	xcodegen generate
 
-open: project
+open:
 	open Feins.xcodeproj
 
 ## Unit- und UI-Tests im Simulator
-test: project
+test:
 	xcodebuild test -project Feins.xcodeproj -scheme Feins \
 		-destination "platform=iOS Simulator,name=$(SIMULATOR)" \
 		CODE_SIGNING_ALLOWED=NO
