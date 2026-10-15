@@ -21,7 +21,8 @@ struct DishChooserTests {
     func onlyMine() {
         let candidates = chooser.candidates(from: mine, for: ChooserRequest(source: .mine))
         #expect(candidates.map(\.name) == ["Älplermagronen", "Tomatenrisotto", "Shakshuka"])
-        #expect(candidates.allSatisfy(\.isMine))
+        let allMine = candidates.allSatisfy { $0.isMine }
+        #expect(allMine)
     }
 
     @Test("Auch neue Ideen: ergänzt den Katalog ohne Duplikate")
