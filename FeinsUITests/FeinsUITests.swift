@@ -33,7 +33,7 @@ final class FeinsUITests: XCTestCase {
         field.tap()
         field.typeText("spagetti carbonara\n")
 
-        let row = app.descendants(matching: .any)["dish.Spaghetti Carbonara"]
+        let row = app.descendants(matching: .any)["dish.Spaghetti Carbonara"].firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10), "Tippfehler wurde nicht korrigiert")
         screenshot("02-gericht-hinzugefuegt", app)
 
@@ -91,7 +91,7 @@ final class FeinsUITests: XCTestCase {
         XCTAssertTrue(save.waitForExistence(timeout: 5))
         save.tap()
         app.tabBars.buttons["Gerichte"].tap()
-        XCTAssertTrue(app.descendants(matching: .any)["dish.Linsen-Dal"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.descendants(matching: .any)["dish.Linsen-Dal"].firstMatch.waitForExistence(timeout: 5))
     }
 
     @MainActor
@@ -110,10 +110,10 @@ final class FeinsUITests: XCTestCase {
     func testScreenshotTour() {
         for appearance in ["light", "dark"] {
             let app = launch(seed: true, appearance: appearance)
-            XCTAssertTrue(app.descendants(matching: .any)["dish.Älplermagronen"].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.descendants(matching: .any)["dish.Älplermagronen"].firstMatch.waitForExistence(timeout: 5))
             screenshot("10-gerichte-\(appearance)", app)
 
-            app.descendants(matching: .any)["dish.Älplermagronen"].tap()
+            app.descendants(matching: .any)["dish.Älplermagronen"].firstMatch.tap()
             XCTAssertTrue(app.staticTexts["Zutaten"].waitForExistence(timeout: 5))
             screenshot("11-rezept-\(appearance)", app)
 

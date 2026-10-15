@@ -237,6 +237,5 @@ private struct ResultCard: View {
             .accessibilityIdentifier("chooser.result.open")
         }
         .feinsCard()
-        .accessibilityIdentifier("chooser.result")
     }
 }
