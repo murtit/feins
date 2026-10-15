@@ -30,6 +30,10 @@ final class AppModel {
 
     init(launch: LaunchOptions) {
         self.launch = launch
+        if launch.isUITesting, let domain = Bundle.main.bundleIdentifier {
+            // Jeder UI-Test startet mit frischen Einstellungen, damit Tests nicht voneinander abhängen.
+            UserDefaults.standard.removePersistentDomain(forName: domain)
+        }
         selectedTab = launch.initialTab ?? .dishes
         let configuration = ModelConfiguration(isStoredInMemoryOnly: launch.isUITesting)
         do {
