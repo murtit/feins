@@ -47,9 +47,12 @@ if paired:
     lines.append("")
 
 if singles:
-    lines += ["**Abläufe**", "", "| " + " | ".join(title(n.rsplit('.', 1)[0]) for n in singles) + " |",
-              "| " + " | ".join("---" for _ in singles) + " |",
-              "| " + " | ".join(img(n, 180) for n in singles) + " |", ""]
+    lines += ["**Abläufe**", ""]
+    for start in range(0, len(singles), 4):
+        row = singles[start:start + 4]
+        lines += ["| " + " | ".join(title(n.rsplit('.', 1)[0]) for n in row) + " |",
+                  "| " + " | ".join("---" for _ in row) + " |",
+                  "| " + " | ".join(img(n, 180) for n in row) + " |", ""]
 
 if not files:
     lines.append("_Keine Screenshots vorhanden._")

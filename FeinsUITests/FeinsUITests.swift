@@ -6,10 +6,11 @@ final class FeinsUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    private func launch(seed: Bool = false, appearance: String = "light", tab: String? = nil) -> XCUIApplication {
+    private func launch(seed: Bool = false, appearance: String = "light", tab: String? = nil, speech: String? = nil) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["-ui-testing", "-appearance", appearance]
         if seed { app.launchArguments.append("-seed-sample-data") }
+        if let speech { app.launchArguments += ["-simulate-speech", speech] }
         if let tab { app.launchArguments += ["-tab", tab] }
         app.launch()
         return app
@@ -28,10 +29,15 @@ final class FeinsUITests: XCTestCase {
         XCTAssertTrue(app.otherElements["emptyState"].waitForExistence(timeout: 5) || app.staticTexts["Was gits feins?"].exists)
         screenshot("01-leer", app)
 
+        let add = app.buttons["addDish.button"]
+        XCTAssertTrue(add.waitForExistence(timeout: 5))
+        add.tap()
+
         let field = app.textFields["quickAdd.field"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
-        field.tap()
-        field.typeText("spagetti carbonara\n")
+        field.typeText("spagetti carbonara")
+        screenshot("01b-eintippen", app)
+        app.buttons["quickAdd.submit"].tap()
 
         let row = app.descendants(matching: .any)["dish.Spaghetti Carbonara"].firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10), "Tippfehler wurde nicht korrigiert")
@@ -41,6 +47,37 @@ final class FeinsUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Zutaten"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Zubereitung"].exists)
         screenshot("03-rezept", app)
+    }
+
+    @MainActor
+    func testAddDishBySwipingUpAndSpeaking() {
+        let app = launch(speech: "zürcher geschnezeltes")
+        let add = app.buttons["addDish.button"]
+        XCTAssertTrue(add.waitForExistence(timeout: 5))
+
+        // Kreis greifen und nach oben ziehen: das startet das Einsprechen.
+        let start = add.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        start.press(forDuration: 0.05, thenDragTo: start.withOffset(CGVector(dx: 0, dy: -160)))
+
+        let bubble = app.staticTexts["addDish.bubble"]
+        XCTAssertTrue(bubble.waitForExistence(timeout: 3), "Einsprechen wurde nicht gestartet")
+        screenshot("04-einsprechen", app)
+
+        let row = app.descendants(matching: .any)["dish.Zürcher Geschnetzeltes"].firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10), "Eingesprochenes Gericht fehlt")
+        XCTAssertFalse(app.textFields["quickAdd.field"].exists, "Nach dem Wischen soll keine Tastatur aufgehen")
+    }
+
+    @MainActor
+    func testTypingBarCanBeClosed() {
+        let app = launch()
+        let add = app.buttons["addDish.button"]
+        XCTAssertTrue(add.waitForExistence(timeout: 5))
+        add.tap()
+        XCTAssertTrue(app.textFields["quickAdd.field"].waitForExistence(timeout: 5))
+        app.buttons["quickAdd.close"].tap()
+        XCTAssertTrue(add.waitForExistence(timeout: 5))
+        XCTAssertFalse(app.textFields["quickAdd.field"].exists)
     }
 
     @MainActor

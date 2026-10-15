@@ -7,7 +7,6 @@ struct DishListView: View {
     @Query(sort: \Dish.createdAt, order: .reverse) private var dishes: [Dish]
     @State private var draft = ""
     @State private var search = ""
-    @State private var speech = SpeechRecognizer()
 
     private var filtered: [Dish] {
         let query = search.trimmingCharacters(in: .whitespaces)
@@ -32,14 +31,14 @@ struct DishListView: View {
             .navigationTitle("Meine Gerichte")
             .navigationDestination(for: Dish.self) { DishDetailView(dish: $0) }
             .safeAreaInset(edge: .bottom) {
-                QuickAddBar(text: $draft, speech: speech, onSubmit: submit)
-                    .padding(.horizontal)
-                    .padding(.bottom, 8)
+                AddDishButton(text: $draft, speech: model.speech, onSubmit: submit)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 12)
             }
-            .onChange(of: speech.transcript) { _, transcript in
+            .onChange(of: model.speech.transcript) { _, transcript in
                 if !transcript.isEmpty { draft = transcript }
             }
-            .onChange(of: speech.isListening) { wasListening, isListening in
+            .onChange(of: model.speech.isListening) { wasListening, isListening in
                 // Nach dem Einsprechen direkt speichern: so wenig Tippen wie möglich.
                 if wasListening, !isListening, !draft.trimmingCharacters(in: .whitespaces).isEmpty {
                     submit()
@@ -128,7 +127,7 @@ struct EmptyDishesView: View {
             Text("Was gits feins?")
                 .font(.feinsTitle(.title))
                 .foregroundStyle(Theme.ink)
-            Text("Dir ist ein Gericht eingefallen? Tipp es unten ein oder sprich es ein. Feins korrigiert es, sortiert es ein und schreibt das Rezept dazu.")
+            Text("Dir ist ein Gericht eingefallen? Tipp auf den Kreis unten rechts oder zieh ihn nach oben und sprich es ein. Feins korrigiert es, sortiert es ein und schreibt das Rezept dazu.")
                 .font(.body)
                 .foregroundStyle(Theme.muted)
                 .multilineTextAlignment(.center)
@@ -138,60 +137,5 @@ struct EmptyDishesView: View {
         }
         .frame(maxWidth: .infinity)
         .accessibilityIdentifier("emptyState")
-    }
-}
-
-/// Eingabezeile unten: Tastatur oder Mikrofon, mehr braucht es nicht.
-struct QuickAddBar: View {
-    @Binding var text: String
-    var speech: SpeechRecognizer
-    var onSubmit: () -> Void
-    @FocusState private var focused: Bool
-
-    private var canSubmit: Bool { !text.trimmingCharacters(in: .whitespaces).isEmpty }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            if let message = speech.message {
-                Text(message)
-                    .font(.footnote)
-                    .foregroundStyle(Theme.muted)
-                    .padding(.horizontal, 12)
-            }
-            HStack(spacing: 10) {
-                Button {
-                    Task { await speech.toggle() }
-                } label: {
-                    Image(systemName: speech.isListening ? "waveform" : "mic.fill")
-                        .font(.title3)
-                        .symbolEffect(.variableColor.iterative, isActive: speech.isListening)
-                        .frame(width: 44, height: 44)
-                        .foregroundStyle(speech.isListening ? Color.white : Theme.ink)
-                        .background(speech.isListening ? Theme.accent : Theme.ink.opacity(0.07), in: Circle())
-                }
-                .accessibilityLabel(speech.isListening ? "Aufnahme beenden" : "Gericht einsprechen")
-                .accessibilityIdentifier("quickAdd.mic")
-
-                TextField(speech.isListening ? "Ich höre zu …" : "Was ist dir eingefallen?", text: $text)
-                    .focused($focused)
-                    .submitLabel(.done)
-                    .onSubmit { if canSubmit { onSubmit() } }
-                    .accessibilityIdentifier("quickAdd.field")
-
-                Button(action: onSubmit) {
-                    Image(systemName: "arrow.up")
-                        .font(.headline)
-                        .frame(width: 44, height: 44)
-                        .foregroundStyle(.white)
-                        .background(canSubmit ? Theme.accent : Theme.muted.opacity(0.4), in: Circle())
-                }
-                .disabled(!canSubmit)
-                .accessibilityLabel("Gericht speichern")
-                .accessibilityIdentifier("quickAdd.submit")
-            }
-            .padding(6)
-            .padding(.leading, 0)
-            .glassEffect(.regular, in: .capsule)
-        }
     }
 }
