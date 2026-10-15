@@ -100,13 +100,13 @@ struct AddDishButton: View {
             }
         }
         .overlay(alignment: .top) { micHint }
-        .glassEffect(.regular.interactive(), in: Circle())
+        .glassEffect(.regular, in: Circle())
         .glassEffectID("add", in: glass)
         .scaleEffect(scale)
         .offset(y: lift)
         .shadow(color: Theme.accent.opacity(0.35), radius: 12, y: 6)
         .contentShape(Circle())
-        .gesture(gesture)
+        .highPriorityGesture(gesture)
         .accessibilityElement()
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(speech.isListening ? "Aufnahme beenden" : "Gericht hinzufügen")

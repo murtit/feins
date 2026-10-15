@@ -57,9 +57,9 @@ final class FeinsUITests: XCTestCase {
 
         // Kreis greifen und nach oben ziehen: das startet das Einsprechen.
         let start = add.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-        start.press(forDuration: 0.05, thenDragTo: start.withOffset(CGVector(dx: 0, dy: -160)))
+        start.press(forDuration: 0.1, thenDragTo: start.withOffset(CGVector(dx: 0, dy: -160)))
 
-        let bubble = app.staticTexts["addDish.bubble"]
+        let bubble = app.descendants(matching: .any)["addDish.bubble"].firstMatch
         XCTAssertTrue(bubble.waitForExistence(timeout: 3), "Einsprechen wurde nicht gestartet")
         screenshot("04-einsprechen", app)
 
