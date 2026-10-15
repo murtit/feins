@@ -18,15 +18,17 @@ Simple iOS-App, mit der man Gerichte, die einem im Alltag einfallen, abspeichern
 
 ## Entwickeln
 
-Voraussetzungen: Xcode 26 oder neuer, [XcodeGen](https://github.com/yonaskolb/XcodeGen).
+Voraussetzung: Xcode 26 oder neuer.
+
+1. `Feins.xcodeproj` öffnen (oder `make open`).
+2. Oben das Schema **Feins** und einen Simulator wie **iPhone 17 Pro** wählen, dann ▶︎ (⌘R).
+3. Für ein eigenes iPhone: Target **Feins** → *Signing & Capabilities* → eigenes **Team** wählen.
 
 ```bash
-brew install xcodegen
-make open     # Projekt generieren und in Xcode öffnen
 make test     # Unit- und UI-Tests im Simulator
 ```
 
-Das Xcode-Projekt wird aus `project.yml` generiert und ist nicht eingecheckt.
+Das Projekt wird aus `project.yml` mit [XcodeGen](https://github.com/yonaskolb/XcodeGen) erzeugt und ist eingecheckt. Wer `project.yml` ändert, kann `brew install xcodegen && make project` ausführen; auf Pull Requests generiert und committet der Workflow *Xcode-Projekt* das Projekt sonst automatisch.
 
 **Claude API lokal nutzen:** in der App unter *Einstellungen → Claude (KI)* den Schlüssel eintragen (wird im Schlüsselbund gespeichert), oder beim Entwickeln im Xcode-Schema die Umgebungsvariable `ANTHROPIC_API_KEY` setzen.
 
@@ -48,6 +50,7 @@ Das Xcode-Projekt wird aus `project.yml` generiert und ist nicht eingecheckt.
 | Workflow | Wann | Was |
 | --- | --- | --- |
 | `CI` | Jede PR und jeder Push auf `main` | Startet einen macOS-Runner mit dem neuesten Xcode, bootet einen iPhone-Simulator, führt Unit- und UI-Tests aus, exportiert die Screenshots und postet sie (hell/dunkel) als Kommentar in die PR. Die Bilder liegen auf dem Branch `ci-screenshots`. |
+| `Xcode-Projekt` | Jede PR und jeder Push auf `main` | Generiert `Feins.xcodeproj` aus `project.yml`. Auf PRs wird ein verändertes Projekt automatisch auf den Branch committet, auf `main` schlägt der Check bei einem veralteten Projekt fehl. |
 | `TestFlight` | Manuell oder Tag `v*` | Archiviert, signiert (automatisch via App Store Connect API) und lädt die App zu TestFlight hoch. |
 
 ### Secrets (Settings → Secrets and variables → Actions)

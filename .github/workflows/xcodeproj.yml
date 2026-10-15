@@ -1,0 +1,67 @@
+name: Xcode-Projekt
+
+# Hält das eingecheckte Feins.xcodeproj synchron mit project.yml.
+# PR-Branches: generiert das Projekt und committet Änderungen automatisch.
+# main: schlägt fehl, falls das eingecheckte Projekt veraltet ist.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: xcodeproj-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    name: Feins.xcodeproj aktuell
+    runs-on: macos-26
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Auf PRs den Branch selbst auschecken, damit wir darauf pushen können.
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+
+      - name: XcodeGen installieren
+        run: brew install xcodegen
+
+      - name: Xcode-Projekt generieren
+        run: xcodegen generate
+
+      - name: Änderungen prüfen
+        id: diff
+        run: |
+          git add -A Feins.xcodeproj
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "✅ Feins.xcodeproj ist aktuell." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --cached --stat
+          fi
+
+      - name: Projekt committen (PR-Branch)
+        if: >-
+          steps.diff.outputs.changed == 'true' &&
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Xcode-Projekt aus project.yml neu generiert"
+          git push
+          echo "🔄 Feins.xcodeproj neu generiert und auf den Branch gepusht." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Veraltetes Projekt melden
+        if: >-
+          steps.diff.outputs.changed == 'true' &&
+          !(github.event_name == 'pull_request' &&
+            github.event.pull_request.head.repo.full_name == github.repository)
+        run: |
+          echo "::error::Feins.xcodeproj passt nicht zu project.yml. Lokal 'make project' ausführen und committen."
+          exit 1
