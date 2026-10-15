@@ -1,0 +1,101 @@
+name: TestFlight
+
+# Baut eine signierte Version und lädt sie zu App Store Connect / TestFlight hoch.
+# Startet manuell oder bei einem Tag wie v0.1.0. Benötigte Secrets: siehe README ("Auslieferung").
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  testflight:
+    name: Archivieren & hochladen
+    runs-on: macos-26
+    timeout-minutes: 45
+    env:
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_KEY_P8_BASE64: ${{ secrets.ASC_KEY_P8_BASE64 }}
+    steps:
+      - name: Secrets prüfen
+        id: secrets
+        run: |
+          missing=()
+          for name in APPLE_TEAM_ID ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8_BASE64; do
+            [[ -z "${!name}" ]] && missing+=("$name")
+          done
+          if (( ${#missing[@]} )); then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "## ⏭️ TestFlight übersprungen"
+              echo "Folgende Repository-Secrets fehlen noch: \`${missing[*]}\`."
+              echo "Anleitung: README, Abschnitt \"Auslieferung via TestFlight\"."
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v5
+        if: steps.secrets.outputs.ready == 'true'
+
+      - name: Xcode und Projekt vorbereiten
+        if: steps.secrets.outputs.ready == 'true'
+        run: |
+          scripts/ci/select-xcode.sh
+          brew install xcodegen
+          xcodegen generate
+          echo "$ASC_KEY_P8_BASE64" | base64 --decode > "$RUNNER_TEMP/AuthKey.p8"
+
+      - name: Archivieren
+        if: steps.secrets.outputs.ready == 'true'
+        run: |
+          set -o pipefail
+          xcodebuild archive \
+            -project Feins.xcodeproj \
+            -scheme Feins \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath build/Feins.xcarchive \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+            CURRENT_PROJECT_VERSION="${{ github.run_number }}" \
+            | xcbeautify --renderer github-actions
+
+      - name: Zu TestFlight hochladen
+        if: steps.secrets.outputs.ready == 'true'
+        run: |
+          set -o pipefail
+          cat > build/ExportOptions.plist <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>${APPLE_TEAM_ID}</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>manageAppVersionAndBuildNumber</key><false/>
+          </dict>
+          </plist>
+          PLIST
+          xcodebuild -exportArchive \
+            -archivePath build/Feins.xcarchive \
+            -exportOptionsPlist build/ExportOptions.plist \
+            -exportPath build/export \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
+            -authenticationKeyID "$ASC_KEY_ID" \
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
+            | xcbeautify --renderer github-actions
+          echo "## 🚀 Build ${{ github.run_number }} an TestFlight übergeben" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Schlüssel aufräumen
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"

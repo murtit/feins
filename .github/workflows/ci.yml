@@ -1,0 +1,142 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build & Test (iOS Simulator)
+    runs-on: macos-26
+    timeout-minutes: 45
+    env:
+      SIMULATOR_NAME: iPhone 17 Pro
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Neuestes Xcode wählen
+        run: scripts/ci/select-xcode.sh
+
+      - name: XcodeGen installieren
+        run: brew install xcodegen
+
+      - name: Xcode-Projekt generieren
+        run: xcodegen generate
+
+      - name: iOS-Simulator starten
+        id: sim
+        run: |
+          udid=$(scripts/ci/pick-simulator.sh)
+          echo "udid=$udid" >> "$GITHUB_OUTPUT"
+          xcrun simctl boot "$udid" || true
+          xcrun simctl bootstatus "$udid" -b
+
+      - name: Bauen und testen (Unit + UI)
+        env:
+          # Optional: aktiviert den Live-Test gegen die echte Claude API.
+          TEST_RUNNER_ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -o pipefail
+          mkdir -p build
+          formatter=cat
+          if command -v xcbeautify >/dev/null; then formatter="xcbeautify --renderer github-actions"; fi
+          xcodebuild test \
+            -project Feins.xcodeproj \
+            -scheme Feins \
+            -destination "id=${{ steps.sim.outputs.udid }}" \
+            -resultBundlePath build/Tests.xcresult \
+            CODE_SIGNING_ALLOWED=NO \
+            | tee build/xcodebuild.log | $formatter
+
+      - name: Testzusammenfassung
+        if: always()
+        run: python3 scripts/ci/test-summary.py build/Tests.xcresult >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Screenshots exportieren
+        if: always()
+        run: python3 scripts/ci/export-screenshots.py build/Tests.xcresult build/screenshots || true
+
+      - name: Screenshots hochladen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: build/screenshots
+          if-no-files-found: ignore
+
+      - name: Test-Report hochladen
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            build/Tests.xcresult
+            build/xcodebuild.log
+          if-no-files-found: ignore
+
+  screenshots:
+    name: Screenshots in die PR
+    needs: test
+    if: >-
+      always() && needs.test.result != 'cancelled' &&
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: scripts/ci
+
+      - name: Screenshots herunterladen
+        id: download
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: screenshots
+          path: shots
+
+      - name: Auf Branch ci-screenshots ablegen und in der PR kommentieren
+        if: steps.download.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          TEST_RESULT: ${{ needs.test.result }}
+        run: |
+          set -euo pipefail
+          dir="pr-${PR}/${SHA::7}"
+          remote="https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
+          if ! git clone --quiet --depth 1 --branch ci-screenshots "$remote" store 2>/dev/null; then
+            git init --quiet store
+            git -C store checkout --quiet --orphan ci-screenshots
+            git -C store remote add origin "$remote"
+            echo "Screenshots aus der CI, automatisch erzeugt." > store/README.md
+          fi
+          mkdir -p "store/$dir"
+          cp shots/*.png "store/$dir/"
+          git -C store add -A
+          git -C store -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit --quiet -m "Screenshots für PR #${PR} (${SHA::7})"
+          git -C store push --quiet origin ci-screenshots
+
+          python3 scripts/ci/screenshot-comment.py "store/$dir" "https://github.com/${REPO}/blob/ci-screenshots/${dir}" "${SHA::7}" "$TEST_RESULT" > comment.md
+          marker='<!-- feins-screenshots -->'
+          existing=$(gh api "repos/${REPO}/issues/${PR}/comments" --paginate --jq ".[] | select(.body | startswith(\"${marker}\")) | .id" | head -1)
+          if [[ -n "$existing" ]]; then
+            gh api --method PATCH "repos/${REPO}/issues/comments/${existing}" -F body=@comment.md > /dev/null
+          else
+            gh api --method POST "repos/${REPO}/issues/${PR}/comments" -F body=@comment.md > /dev/null
+          fi
