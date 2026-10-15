@@ -98,6 +98,20 @@ final class FeinsUITests: XCTestCase {
     }
 
     @MainActor
+    func testTappingTheDieRollsADish() {
+        let app = launch(seed: true, tab: "chooser")
+        let die = app.buttons["chooser.die"]
+        XCTAssertTrue(die.waitForExistence(timeout: 5))
+        screenshot("06-wuerfel", app)
+        die.tap()
+
+        let name = app.staticTexts["chooser.result.name"]
+        XCTAssertTrue(name.waitForExistence(timeout: 5), "Würfeln hat kein Gericht geliefert")
+        XCTAssertTrue(app.buttons["chooser.surprise"].label.contains("Nochmal"))
+        screenshot("07-gewuerfelt", app)
+    }
+
+    @MainActor
     func testChooserFiltersByIngredient() {
         let app = launch(seed: true, tab: "chooser")
         let field = app.textFields["chooser.ingredientField"]

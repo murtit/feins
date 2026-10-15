@@ -13,6 +13,8 @@ struct ChooserView: View {
     @State private var isThinking = false
     @State private var emptyMessage: String?
     @State private var rolls = 0
+    @State private var isRolling = false
+    @State private var faces = DieFaces.showing(5)
     @State private var seeded = SeededGenerator(seed: 42)
 
     private let chooser = DishChooser()
@@ -21,9 +23,7 @@ struct ChooserView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    intro
-                    sourcePicker
-                    ingredientsCard
+                    dieStage
                     surpriseButton
                     if let result {
                         ResultCard(idea: result, onAgain: { Task { await surprise() } })
@@ -36,6 +36,7 @@ struct ChooserView: View {
                             .feinsCard()
                             .accessibilityIdentifier("chooser.empty")
                     }
+                    optionsCard
                 }
                 .padding()
             }
@@ -52,9 +53,36 @@ struct ChooserView: View {
         }
     }
 
-    private var intro: some View {
-        Text("Keine Idee, was du kochen sollst? Feins wählt für dich. Zutaten und Quelle sind optional.")
-            .foregroundStyle(Theme.muted)
+    /// Der grosse Würfel: antippen würfelt genauso wie der Knopf.
+    private var dieStage: some View {
+        VStack(spacing: 4) {
+            Button {
+                Task { await surprise() }
+            } label: {
+                RollingDie(faces: faces, rolls: rolls)
+            }
+            .buttonStyle(.plain)
+            .disabled(isRolling)
+            .accessibilityLabel("Würfeln")
+            .accessibilityValue("Zeigt \(faces.top)")
+            .accessibilityIdentifier("chooser.die")
+            Text(result == nil ? "Tipp auf den Würfel oder den Knopf." : " ")
+                .font(.footnote)
+                .foregroundStyle(Theme.muted)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    /// Optionen sind zweitrangig: wer nichts einstellt, bekommt eine völlige Überraschung.
+    private var optionsCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Optional")
+                .font(.feinsLabel())
+                .foregroundStyle(Theme.muted)
+                .textCase(.uppercase)
+            sourcePicker
+            ingredientsCard
+        }
     }
 
     private var sourcePicker: some View {
@@ -122,9 +150,6 @@ struct ChooserView: View {
                 if isThinking {
                     ProgressView()
                         .tint(.white)
-                } else {
-                    Image(systemName: "dice.fill")
-                        .symbolEffect(.bounce, value: rolls)
                 }
                 Text(result == nil ? "Überrasch mich" : "Nochmal würfeln")
             }
@@ -134,7 +159,7 @@ struct ChooserView: View {
         }
         .buttonStyle(.glassProminent)
         .controlSize(.large)
-        .disabled(isThinking)
+        .disabled(isRolling)
         .accessibilityIdentifier("chooser.surprise")
     }
 
@@ -150,8 +175,13 @@ struct ChooserView: View {
     }
 
     private func surprise() async {
+        guard !isRolling else { return }
+        isRolling = true
+        defer { isRolling = false }
+        let started = Date.now
         rolls += 1
         emptyMessage = nil
+        let shuffle = Task { await shuffleFaces() }
         let mine = dishes.map(\.asIdea)
         let request = ChooserRequest(source: source, ingredients: ingredients, excluding: shown)
         var pick: DishIdea?
@@ -172,6 +202,12 @@ struct ChooserView: View {
                 : chooser.pick(from: mine, for: request)
         }
 
+        // Erst wenn der Würfel liegt, kommt das Ergebnis.
+        let remaining = RollingDie.rollDuration - Date.now.timeIntervalSince(started)
+        if remaining > 0 { try? await Task.sleep(for: .seconds(remaining)) }
+        shuffle.cancel()
+        faces = DieFaces.showing(Int.random(in: 1...6))
+
         withAnimation(.spring(duration: 0.45, bounce: 0.35)) {
             result = pick
             if let pick {
@@ -179,6 +215,15 @@ struct ChooserView: View {
             } else {
                 emptyMessage = emptyText(mineIsEmpty: mine.isEmpty)
             }
+        }
+    }
+
+    /// Während des Flugs wechseln die Augen, damit es nach echtem Würfeln aussieht.
+    private func shuffleFaces() async {
+        var generator = SystemRandomNumberGenerator()
+        while !Task.isCancelled {
+            faces = DieFaces.random(using: &generator)
+            try? await Task.sleep(for: .milliseconds(90))
         }
     }
 

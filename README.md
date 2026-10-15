@@ -10,7 +10,7 @@ Simple iOS-App, mit der man Gerichte, die einem im Alltag einfallen, abspeichern
 - **Automatisch verfeinert:** Tipp- und Erkennungsfehler werden korrigiert, das Gericht wird kategorisiert und mit einem Rezept (Zutaten, Schritte, Dauer) ergänzt.
   - Mit Claude-API-Schlüssel: Claude (`claude-opus-5-5`) übernimmt das.
   - Ohne Schlüssel: Offline-Modus erkennt rund 30 bekannte Gerichte auch mit Tippfehlern und ordnet über Schlüsselwörter ein.
-- **Random Chooser „Was gits feins?“:** würfelt ein Gericht.
+- **Random Chooser „Was gits feins?“:** würfelt ein Gericht: Ein 3D-Würfel springt, überschlägt sich und landet, dann kommt der Vorschlag. Antippen von Würfel oder Knopf genügt.
   - Quelle wählbar: *Nur meine* oder *Auch neue Ideen* (eingebauter Katalog, mit Schlüssel zusätzlich frische Ideen von Claude).
   - Optional Zutaten angeben: Es kommen nur Gerichte, die diese Zutaten verwenden.
 - **Erinnerungen** zum Mittag- und Abendessen mit einem Vorschlag aus den eigenen Gerichten.
