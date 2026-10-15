@@ -31,7 +31,7 @@ enum Theme {
     static let card = Color("Card")
     static let ink = Color("Ink")
     static let muted = Color("Muted")
-    static let accent = Color.accentColor
+    static let accent = Color("AccentColor")
 
     static let corner: CGFloat = 22
 }

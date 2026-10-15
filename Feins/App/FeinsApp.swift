@@ -17,7 +17,7 @@ struct FeinsApp: App {
             RootView()
                 .environment(model)
                 .preferredColorScheme(model.launch.forcedAppearance?.colorScheme ?? appearance.colorScheme)
-                .tint(.accentColor)
+                .tint(Theme.accent)
         }
         .modelContainer(model.container)
     }
