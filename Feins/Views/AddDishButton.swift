@@ -77,8 +77,11 @@ struct AddDishButton: View {
     // MARK: Kreis
 
     private var circle: some View {
-        ZStack {
-            Image(systemName: speech.isListening ? "waveform" : (progress > 0.5 ? "mic.fill" : "plus"))
+        let symbol: String = speech.isListening ? "waveform" : (progress > 0.5 ? "mic.fill" : "plus")
+        let scale: CGFloat = 1 + progress * 0.08
+        let lift: CGFloat = drag * 0.45
+        return ZStack {
+            Image(systemName: symbol)
                 .font(.system(size: 26, weight: .semibold))
                 .foregroundStyle(.white)
                 .contentTransition(.symbolEffect(.replace))
@@ -97,10 +100,10 @@ struct AddDishButton: View {
             }
         }
         .overlay(alignment: .top) { micHint }
-        .glassEffect(.regular.interactive(), in: .circle)
+        .glassEffect(.regular.interactive(), in: Circle())
         .glassEffectID("add", in: glass)
-        .scaleEffect(1 + progress * 0.08)
-        .offset(y: drag * 0.45)
+        .scaleEffect(scale)
+        .offset(y: lift)
         .shadow(color: Theme.accent.opacity(0.35), radius: 12, y: 6)
         .contentShape(Circle())
         .gesture(gesture)
@@ -115,15 +118,21 @@ struct AddDishButton: View {
 
     /// Kleines Mikrofon über dem Kreis: zeigt, dass man nach oben ziehen kann.
     private var micHint: some View {
-        Image(systemName: "mic.fill")
+        let p: CGFloat = progress
+        let iconColor: Color = armed ? Color.white : Theme.ink
+        let fill: Color = armed ? Theme.accent : Theme.card
+        let scale: CGFloat = 0.75 + p * 0.35
+        let lift: CGFloat = -30 - p * 40
+        let alpha: Double = speech.isListening ? 0 : Double(0.55 + p * 0.45)
+        return Image(systemName: "mic.fill")
             .font(.system(size: 12, weight: .bold))
-            .foregroundStyle(armed ? .white : Theme.ink)
+            .foregroundStyle(iconColor)
             .frame(width: 28, height: 28)
-            .background(armed ? Theme.accent : Theme.card, in: Circle())
+            .background(fill, in: Circle())
             .overlay(Circle().stroke(Theme.ink.opacity(0.08)))
-            .scaleEffect(0.75 + progress * 0.35)
-            .offset(y: -30 - progress * 40)
-            .opacity(speech.isListening ? 0 : 0.55 + progress * 0.45)
+            .scaleEffect(scale)
+            .offset(y: lift)
+            .opacity(alpha)
             .allowsHitTesting(false)
             .accessibilityHidden(true)
     }
