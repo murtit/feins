@@ -1,0 +1,12 @@
+# Xcode-Projekt wird aus project.yml generiert (xcodegen)
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+build/
+*.xcresult
+.DS_Store
+# Lokale Secrets
+Config/Secrets.xcconfig
+.env
+__pycache__/
