@@ -23,6 +23,13 @@ final class SpeechRecognizer {
     @ObservationIgnored private let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "de-CH"))
         ?? SFSpeechRecognizer(locale: Locale(identifier: "de-DE"))
 
+    /// Nur für UI-Tests: statt des Mikrofons wird dieser Text "gehört".
+    @ObservationIgnored private let simulatedTranscript: String?
+
+    init(simulatedTranscript: String? = nil) {
+        self.simulatedTranscript = simulatedTranscript
+    }
+
     var isListening: Bool { state == .listening }
 
     var message: String? {
@@ -43,6 +50,10 @@ final class SpeechRecognizer {
 
     func start() async {
         transcript = ""
+        if let simulatedTranscript {
+            await simulate(simulatedTranscript)
+            return
+        }
         state = .requesting
         guard await Self.authorize() else {
             state = .denied
@@ -94,6 +105,15 @@ final class SpeechRecognizer {
         if state == .listening || state == .requesting {
             state = .idle
         }
+    }
+
+    private func simulate(_ text: String) async {
+        state = .listening
+        try? await Task.sleep(for: .seconds(1.2))
+        guard state == .listening else { return }
+        transcript = text
+        try? await Task.sleep(for: .seconds(0.6))
+        if state == .listening { state = .idle }
     }
 
     fileprivate func receive(text: String?, isFinal: Bool, failed: Bool) {

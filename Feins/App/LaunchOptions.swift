@@ -6,6 +6,8 @@ struct LaunchOptions {
     var seedSampleData = false
     var forcedAppearance: Appearance?
     var initialTab: AppTab?
+    /// Ersetzt im UI-Test das Mikrofon: die App "hört" diesen Text.
+    var simulatedSpeech: String?
 
     static var current: LaunchOptions {
         let arguments = ProcessInfo.processInfo.arguments
@@ -17,6 +19,9 @@ struct LaunchOptions {
         }
         if let index = arguments.firstIndex(of: "-tab"), arguments.indices.contains(index + 1) {
             options.initialTab = AppTab(rawValue: arguments[index + 1])
+        }
+        if let index = arguments.firstIndex(of: "-simulate-speech"), arguments.indices.contains(index + 1) {
+            options.simulatedSpeech = arguments[index + 1]
         }
         return options
     }

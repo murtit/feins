@@ -6,7 +6,7 @@ Simple iOS-App, mit der man Gerichte, die einem im Alltag einfallen, abspeichern
 
 ## Funktionen
 
-- **Gericht festhalten**, so einfach wie möglich: unten eintippen oder per Mikrofon einsprechen (Spracherkennung auf dem iPhone, Schweizer Hochdeutsch).
+- **Gericht festhalten**, so einfach wie möglich: auf den runden Knopf unten rechts tippen und eintippen, oder den Knopf nach oben ziehen und einsprechen (Spracherkennung auf dem iPhone, Schweizer Hochdeutsch).
 - **Automatisch verfeinert:** Tipp- und Erkennungsfehler werden korrigiert, das Gericht wird kategorisiert und mit einem Rezept (Zutaten, Schritte, Dauer) ergänzt.
   - Mit Claude-API-Schlüssel: Claude (`claude-opus-5-5`) übernimmt das.
   - Ohne Schlüssel: Offline-Modus erkennt rund 30 bekannte Gerichte auch mit Tippfehlern und ordnet über Schlüsselwörter ein.

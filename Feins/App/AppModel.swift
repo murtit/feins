@@ -21,6 +21,7 @@ enum SettingsKeys {
 final class AppModel {
     let launch: LaunchOptions
     let container: ModelContainer
+    let speech: SpeechRecognizer
     var selectedTab: AppTab
     private(set) var apiKey: String?
     private(set) var enriching: Set<UUID> = []
@@ -42,6 +43,7 @@ final class AppModel {
             fatalError("SwiftData-Container konnte nicht erstellt werden: \(error)")
         }
         apiKey = launch.isUITesting ? nil : keyStore.load()
+        speech = SpeechRecognizer(simulatedTranscript: launch.simulatedSpeech)
         if launch.seedSampleData {
             SampleData.insert(into: container.mainContext)
         }
