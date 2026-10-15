@@ -1,0 +1,684 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0EED4D4D6A7C15386D3C90DD /* FeinsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A0014451022AF8687920B /* FeinsApp.swift */; };
+		1BAD89BA6A18570439997AB3 /* DishAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9556D0667422418AB7EDBF /* DishAssistant.swift */; };
+		3B07974BEB5EE2FBDEA257ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD10CF708DC584BF7D62D2D8 /* SettingsView.swift */; };
+		3B7210FED56CF42B3F1E2511 /* DishCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD46BF22E3FB079128BA377 /* DishCategory.swift */; };
+		416198BAEBA86AE9B4C432F6 /* DishChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29F82A61FA5E5B8D418D8F9 /* DishChooser.swift */; };
+		44E6A6294701F879071EC3ED /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051EAFA39AE74DF66D9F355D /* MiscTests.swift */; };
+		501866661BCA961956E1DA24 /* LocalDishAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90965757797701AED44E5086 /* LocalDishAssistantTests.swift */; };
+		50FBCCFD13FEC5EAF4B83112 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4777657674D775662DE521 /* ReminderScheduler.swift */; };
+		5BED74F1DAA303F14D28D048 /* FeinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412F32A3AB20FDF9A177CC5 /* FeinsUITests.swift */; };
+		5C42AFB2BB2D0E533F49514A /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F652F8261C6A2142D829DB /* RecipeView.swift */; };
+		61A00CE15B998E5815D35744 /* ClaudeDishAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22020876A337AFBD9DD792 /* ClaudeDishAssistantTests.swift */; };
+		627D8E7A55459AA002DFEC95 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCFA9B1F4AE045B13DE5AAA /* SpeechRecognizer.swift */; };
+		66CE839842F6CAC196AC2E1C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5637AF788396F87D6E02F /* Theme.swift */; };
+		6E6C79D55F834AA5451CA043 /* ChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD4D9829D8CFD510A8B4BB /* ChooserView.swift */; };
+		7741F1E9E782621B211362F0 /* LaunchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB74A9F9EE2005FE45091A5 /* LaunchOptions.swift */; };
+		7EF7E135B177C48CA5BAB5F1 /* APIKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2514F6A0EB61B331C88E3D8 /* APIKeyStore.swift */; };
+		85B7C49874D26338695C4695 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5293906C06BC42337E14BC5 /* Dish.swift */; };
+		89BCB83D606AE3971A31E197 /* DishDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE96348FA7332EBE95185FCB /* DishDraft.swift */; };
+		91C34C4C8CE2FAF731C0E6FB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89D40EB6DA57CAA3074517 /* RootView.swift */; };
+		96F673A0E4804D8DDD6D3080 /* SuggestionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B92B18B1D406ED427F9D35 /* SuggestionCatalog.swift */; };
+		998E6F4C2806017386E3DE67 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1B20C75EA0693666EA08FB /* AppLog.swift */; };
+		A53985F3B87CA82A07ECD807 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2821CD82025657EC314A367C /* FlowLayout.swift */; };
+		A9A16D0089DEDA4823F35C00 /* DishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82474A473748633BCCA43D9 /* DishListView.swift */; };
+		AB525EFD204EF6B3C85E03F2 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B94D5A36D381524D638D8 /* SampleData.swift */; };
+		C7EAAA95A58704B1E56ED16F /* DishChooserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BC9542D965A27A51919155 /* DishChooserTests.swift */; };
+		D36BB1D9EA9F38C68DC2716D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B679301DF21555A3BB3507A6 /* Assets.xcassets */; };
+		D4888F7EEC34F13637FD6771 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E722784EB09A044CCA1EEFC /* AppModel.swift */; };
+		DC4BCA6155E668B5E310CC51 /* IngredientMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC2DDDBA39D6D6CE8214AC /* IngredientMatcher.swift */; };
+		F52277D914168A81C7A70D81 /* ClaudeDishAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26880F937748A34F5252AD7F /* ClaudeDishAssistant.swift */; };
+		F8ACD43C6EE41D06F0933124 /* LocalDishAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDECA84929CB0DBD2A91BB3D /* LocalDishAssistant.swift */; };
+		FDD44CFE109E12BCAC80BD84 /* IngredientMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A636A6465E6ABD1E91662D3B /* IngredientMatcherTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		406EB8C43455C13B04177FC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C3537B4D1804D5D8C366D98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06D14234CA06291D9065A542;
+			remoteInfo = Feins;
+		};
+		CD89BF054ED27C846E816E65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C3537B4D1804D5D8C366D98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06D14234CA06291D9065A542;
+			remoteInfo = Feins;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		051EAFA39AE74DF66D9F355D /* MiscTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscTests.swift; sourceTree = "<group>"; };
+		0F9A0014451022AF8687920B /* FeinsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeinsApp.swift; sourceTree = "<group>"; };
+		12CD4D9829D8CFD510A8B4BB /* ChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooserView.swift; sourceTree = "<group>"; };
+		1E722784EB09A044CCA1EEFC /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		26880F937748A34F5252AD7F /* ClaudeDishAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeDishAssistant.swift; sourceTree = "<group>"; };
+		2821CD82025657EC314A367C /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		3A22020876A337AFBD9DD792 /* ClaudeDishAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeDishAssistantTests.swift; sourceTree = "<group>"; };
+		3E4777657674D775662DE521 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
+		4C89D40EB6DA57CAA3074517 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		5D7E9248E3B50E41326C0A0F /* FeinsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FeinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EFC2DDDBA39D6D6CE8214AC /* IngredientMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientMatcher.swift; sourceTree = "<group>"; };
+		6B1B20C75EA0693666EA08FB /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		724A9A3C87598D288C3B581A /* FeinsUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FeinsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CB74A9F9EE2005FE45091A5 /* LaunchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOptions.swift; sourceTree = "<group>"; };
+		7FF5637AF788396F87D6E02F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		90965757797701AED44E5086 /* LocalDishAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDishAssistantTests.swift; sourceTree = "<group>"; };
+		932BDF1AA2592DFA4DF89D60 /* Feins.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Feins.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DD46BF22E3FB079128BA377 /* DishCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategory.swift; sourceTree = "<group>"; };
+		A0F652F8261C6A2142D829DB /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		A636A6465E6ABD1E91662D3B /* IngredientMatcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientMatcherTests.swift; sourceTree = "<group>"; };
+		AD10CF708DC584BF7D62D2D8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		ADCFA9B1F4AE045B13DE5AAA /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		AE96348FA7332EBE95185FCB /* DishDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDraft.swift; sourceTree = "<group>"; };
+		B2514F6A0EB61B331C88E3D8 /* APIKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyStore.swift; sourceTree = "<group>"; };
+		B5293906C06BC42337E14BC5 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		B679301DF21555A3BB3507A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C29F82A61FA5E5B8D418D8F9 /* DishChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishChooser.swift; sourceTree = "<group>"; };
+		DE9556D0667422418AB7EDBF /* DishAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishAssistant.swift; sourceTree = "<group>"; };
+		E82474A473748633BCCA43D9 /* DishListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishListView.swift; sourceTree = "<group>"; };
+		E8B92B18B1D406ED427F9D35 /* SuggestionCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCatalog.swift; sourceTree = "<group>"; };
+		F412F32A3AB20FDF9A177CC5 /* FeinsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeinsUITests.swift; sourceTree = "<group>"; };
+		F6BC9542D965A27A51919155 /* DishChooserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishChooserTests.swift; sourceTree = "<group>"; };
+		F99B94D5A36D381524D638D8 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		FDECA84929CB0DBD2A91BB3D /* LocalDishAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDishAssistant.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		21FD8174D32EA8BF00772744 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B2514F6A0EB61B331C88E3D8 /* APIKeyStore.swift */,
+				6B1B20C75EA0693666EA08FB /* AppLog.swift */,
+				26880F937748A34F5252AD7F /* ClaudeDishAssistant.swift */,
+				DE9556D0667422418AB7EDBF /* DishAssistant.swift */,
+				C29F82A61FA5E5B8D418D8F9 /* DishChooser.swift */,
+				5EFC2DDDBA39D6D6CE8214AC /* IngredientMatcher.swift */,
+				FDECA84929CB0DBD2A91BB3D /* LocalDishAssistant.swift */,
+				3E4777657674D775662DE521 /* ReminderScheduler.swift */,
+				ADCFA9B1F4AE045B13DE5AAA /* SpeechRecognizer.swift */,
+				E8B92B18B1D406ED427F9D35 /* SuggestionCatalog.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		328990B0856D284140320938 /* FeinsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F412F32A3AB20FDF9A177CC5 /* FeinsUITests.swift */,
+			);
+			path = FeinsUITests;
+			sourceTree = "<group>";
+		};
+		62663219EF128BBE5988BBC7 /* FeinsTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A22020876A337AFBD9DD792 /* ClaudeDishAssistantTests.swift */,
+				F6BC9542D965A27A51919155 /* DishChooserTests.swift */,
+				A636A6465E6ABD1E91662D3B /* IngredientMatcherTests.swift */,
+				90965757797701AED44E5086 /* LocalDishAssistantTests.swift */,
+				051EAFA39AE74DF66D9F355D /* MiscTests.swift */,
+			);
+			path = FeinsTests;
+			sourceTree = "<group>";
+		};
+		63889659E9912C79C32245B5 = {
+			isa = PBXGroup;
+			children = (
+				FAFB8996621A6C17BDD59490 /* Feins */,
+				62663219EF128BBE5988BBC7 /* FeinsTests */,
+				328990B0856D284140320938 /* FeinsUITests */,
+				9B1E50D238D41C7E2B3EA548 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7EE53C274C93C6AD71F9459A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5293906C06BC42337E14BC5 /* Dish.swift */,
+				9DD46BF22E3FB079128BA377 /* DishCategory.swift */,
+				AE96348FA7332EBE95185FCB /* DishDraft.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84ABB0BE5F74E65E0F24A87B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B679301DF21555A3BB3507A6 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9B1E50D238D41C7E2B3EA548 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				932BDF1AA2592DFA4DF89D60 /* Feins.app */,
+				5D7E9248E3B50E41326C0A0F /* FeinsTests.xctest */,
+				724A9A3C87598D288C3B581A /* FeinsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C735BB1BDE30379DD4CD70EE /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				7FF5637AF788396F87D6E02F /* Theme.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		C74AE698D3CCF0FF01A85735 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1E722784EB09A044CCA1EEFC /* AppModel.swift */,
+				0F9A0014451022AF8687920B /* FeinsApp.swift */,
+				7CB74A9F9EE2005FE45091A5 /* LaunchOptions.swift */,
+				F99B94D5A36D381524D638D8 /* SampleData.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F0F2C3935AE0D72FDC10C585 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				12CD4D9829D8CFD510A8B4BB /* ChooserView.swift */,
+				E82474A473748633BCCA43D9 /* DishListView.swift */,
+				2821CD82025657EC314A367C /* FlowLayout.swift */,
+				A0F652F8261C6A2142D829DB /* RecipeView.swift */,
+				4C89D40EB6DA57CAA3074517 /* RootView.swift */,
+				AD10CF708DC584BF7D62D2D8 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FAFB8996621A6C17BDD59490 /* Feins */ = {
+			isa = PBXGroup;
+			children = (
+				C74AE698D3CCF0FF01A85735 /* App */,
+				C735BB1BDE30379DD4CD70EE /* Design */,
+				7EE53C274C93C6AD71F9459A /* Models */,
+				84ABB0BE5F74E65E0F24A87B /* Resources */,
+				21FD8174D32EA8BF00772744 /* Services */,
+				F0F2C3935AE0D72FDC10C585 /* Views */,
+			);
+			path = Feins;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		06D14234CA06291D9065A542 /* Feins */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD38361B1BDF536F46848C59 /* Build configuration list for PBXNativeTarget "Feins" */;
+			buildPhases = (
+				D400FE73FEB5B51181BC437B /* Sources */,
+				39DE6B1902DB3BC605F1C040 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Feins;
+			packageProductDependencies = (
+			);
+			productName = Feins;
+			productReference = 932BDF1AA2592DFA4DF89D60 /* Feins.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8B0C25641793B580D740913C /* FeinsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8D591CAF2F93B6F58FC5840 /* Build configuration list for PBXNativeTarget "FeinsTests" */;
+			buildPhases = (
+				B73689DF8FE256D6586D1826 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26B4E780723A64E073D57B1B /* PBXTargetDependency */,
+			);
+			name = FeinsTests;
+			packageProductDependencies = (
+			);
+			productName = FeinsTests;
+			productReference = 5D7E9248E3B50E41326C0A0F /* FeinsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EBD0CBE09051724FC81D8060 /* FeinsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA9FA96E2D4D745FB69B85AE /* Build configuration list for PBXNativeTarget "FeinsUITests" */;
+			buildPhases = (
+				C9B2D2C5D4C99809A5F7FBB7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB6A05B1EBAC9D5A59B78384 /* PBXTargetDependency */,
+			);
+			name = FeinsUITests;
+			packageProductDependencies = (
+			);
+			productName = FeinsUITests;
+			productReference = 724A9A3C87598D288C3B581A /* FeinsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0C3537B4D1804D5D8C366D98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					06D14234CA06291D9065A542 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					8B0C25641793B580D740913C = {
+						DevelopmentTeam = "";
+					};
+					EBD0CBE09051724FC81D8060 = {
+						DevelopmentTeam = "";
+						TestTargetID = 06D14234CA06291D9065A542;
+					};
+				};
+			};
+			buildConfigurationList = BA988FDD0655BFD23847A90A /* Build configuration list for PBXProject "Feins" */;
+			developmentRegion = de;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				de,
+			);
+			mainGroup = 63889659E9912C79C32245B5;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9B1E50D238D41C7E2B3EA548 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				06D14234CA06291D9065A542 /* Feins */,
+				8B0C25641793B580D740913C /* FeinsTests */,
+				EBD0CBE09051724FC81D8060 /* FeinsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		39DE6B1902DB3BC605F1C040 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36BB1D9EA9F38C68DC2716D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B73689DF8FE256D6586D1826 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61A00CE15B998E5815D35744 /* ClaudeDishAssistantTests.swift in Sources */,
+				C7EAAA95A58704B1E56ED16F /* DishChooserTests.swift in Sources */,
+				FDD44CFE109E12BCAC80BD84 /* IngredientMatcherTests.swift in Sources */,
+				501866661BCA961956E1DA24 /* LocalDishAssistantTests.swift in Sources */,
+				44E6A6294701F879071EC3ED /* MiscTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9B2D2C5D4C99809A5F7FBB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BED74F1DAA303F14D28D048 /* FeinsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D400FE73FEB5B51181BC437B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF7E135B177C48CA5BAB5F1 /* APIKeyStore.swift in Sources */,
+				998E6F4C2806017386E3DE67 /* AppLog.swift in Sources */,
+				D4888F7EEC34F13637FD6771 /* AppModel.swift in Sources */,
+				6E6C79D55F834AA5451CA043 /* ChooserView.swift in Sources */,
+				F52277D914168A81C7A70D81 /* ClaudeDishAssistant.swift in Sources */,
+				85B7C49874D26338695C4695 /* Dish.swift in Sources */,
+				1BAD89BA6A18570439997AB3 /* DishAssistant.swift in Sources */,
+				3B7210FED56CF42B3F1E2511 /* DishCategory.swift in Sources */,
+				416198BAEBA86AE9B4C432F6 /* DishChooser.swift in Sources */,
+				89BCB83D606AE3971A31E197 /* DishDraft.swift in Sources */,
+				A9A16D0089DEDA4823F35C00 /* DishListView.swift in Sources */,
+				0EED4D4D6A7C15386D3C90DD /* FeinsApp.swift in Sources */,
+				A53985F3B87CA82A07ECD807 /* FlowLayout.swift in Sources */,
+				DC4BCA6155E668B5E310CC51 /* IngredientMatcher.swift in Sources */,
+				7741F1E9E782621B211362F0 /* LaunchOptions.swift in Sources */,
+				F8ACD43C6EE41D06F0933124 /* LocalDishAssistant.swift in Sources */,
+				5C42AFB2BB2D0E533F49514A /* RecipeView.swift in Sources */,
+				50FBCCFD13FEC5EAF4B83112 /* ReminderScheduler.swift in Sources */,
+				91C34C4C8CE2FAF731C0E6FB /* RootView.swift in Sources */,
+				AB525EFD204EF6B3C85E03F2 /* SampleData.swift in Sources */,
+				3B07974BEB5EE2FBDEA257ED /* SettingsView.swift in Sources */,
+				627D8E7A55459AA002DFEC95 /* SpeechRecognizer.swift in Sources */,
+				96F673A0E4804D8DDD6D3080 /* SuggestionCatalog.swift in Sources */,
+				66CE839842F6CAC196AC2E1C /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		26B4E780723A64E073D57B1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06D14234CA06291D9065A542 /* Feins */;
+			targetProxy = CD89BF054ED27C846E816E65 /* PBXContainerItemProxy */;
+		};
+		CB6A05B1EBAC9D5A59B78384 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06D14234CA06291D9065A542 /* Feins */;
+			targetProxy = 406EB8C43455C13B04177FC6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		20E1FFBBB204947BD16AF6F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.murtit.feins.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Feins.app/Feins";
+			};
+			name = Release;
+		};
+		28AB151069203FC1908E3024 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Feins;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Feins hört zu, wenn du ein Gericht einsprechen möchtest.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Feins wandelt dein eingesprochenes Gericht direkt auf dem iPhone in Text um.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.murtit.feins;
+				PRODUCT_NAME = Feins;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		49233AE0FC23A8B6EB4E8F47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.murtit.feins.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Feins;
+			};
+			name = Release;
+		};
+		4D5EF40443708F7261D89D39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		72129D0BBC082FE8D02F58A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Feins;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Feins hört zu, wenn du ein Gericht einsprechen möchtest.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Feins wandelt dein eingesprochenes Gericht direkt auf dem iPhone in Text um.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.murtit.feins;
+				PRODUCT_NAME = Feins;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		9226D83A6A834E3601D57435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E06F32FA74F8AA3A69E89556 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.murtit.feins.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Feins.app/Feins";
+			};
+			name = Debug;
+		};
+		EC5ED797B8E2C9AAD5555B2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.murtit.feins.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Feins;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BA988FDD0655BFD23847A90A /* Build configuration list for PBXProject "Feins" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D5EF40443708F7261D89D39 /* Debug */,
+				9226D83A6A834E3601D57435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CD38361B1BDF536F46848C59 /* Build configuration list for PBXNativeTarget "Feins" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28AB151069203FC1908E3024 /* Debug */,
+				72129D0BBC082FE8D02F58A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DA9FA96E2D4D745FB69B85AE /* Build configuration list for PBXNativeTarget "FeinsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC5ED797B8E2C9AAD5555B2C /* Debug */,
+				49233AE0FC23A8B6EB4E8F47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F8D591CAF2F93B6F58FC5840 /* Build configuration list for PBXNativeTarget "FeinsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E06F32FA74F8AA3A69E89556 /* Debug */,
+				20E1FFBBB204947BD16AF6F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0C3537B4D1804D5D8C366D98 /* Project object */;
+}
