@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EED4D4D6A7C15386D3C90DD /* FeinsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A0014451022AF8687920B /* FeinsApp.swift */; };
+		177D2828CB5DCA3869F82125 /* RollingDieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830335827A27391FDE61F0D8 /* RollingDieTests.swift */; };
 		1BAD89BA6A18570439997AB3 /* DishAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9556D0667422418AB7EDBF /* DishAssistant.swift */; };
 		3B07974BEB5EE2FBDEA257ED /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD10CF708DC584BF7D62D2D8 /* SettingsView.swift */; };
 		3B7210FED56CF42B3F1E2511 /* DishCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD46BF22E3FB079128BA377 /* DishCategory.swift */; };
@@ -32,6 +33,7 @@
 		A53985F3B87CA82A07ECD807 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2821CD82025657EC314A367C /* FlowLayout.swift */; };
 		A9A16D0089DEDA4823F35C00 /* DishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82474A473748633BCCA43D9 /* DishListView.swift */; };
 		AB525EFD204EF6B3C85E03F2 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99B94D5A36D381524D638D8 /* SampleData.swift */; };
+		AD525B2DB8781BFDA6F2CC6C /* RollingDie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AD56E735E6B366C4F54AE /* RollingDie.swift */; };
 		C7EAAA95A58704B1E56ED16F /* DishChooserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BC9542D965A27A51919155 /* DishChooserTests.swift */; };
 		D36BB1D9EA9F38C68DC2716D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B679301DF21555A3BB3507A6 /* Assets.xcassets */; };
 		D4888F7EEC34F13637FD6771 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E722784EB09A044CCA1EEFC /* AppModel.swift */; };
@@ -73,10 +75,12 @@
 		5D7E9248E3B50E41326C0A0F /* FeinsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FeinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFC2DDDBA39D6D6CE8214AC /* IngredientMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientMatcher.swift; sourceTree = "<group>"; };
 		6B1B20C75EA0693666EA08FB /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		6C3AD56E735E6B366C4F54AE /* RollingDie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingDie.swift; sourceTree = "<group>"; };
 		6EA21EDD7CDCAF5CBC047755 /* AddDishButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDishButton.swift; sourceTree = "<group>"; };
 		724A9A3C87598D288C3B581A /* FeinsUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FeinsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB74A9F9EE2005FE45091A5 /* LaunchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOptions.swift; sourceTree = "<group>"; };
 		7FF5637AF788396F87D6E02F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		830335827A27391FDE61F0D8 /* RollingDieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingDieTests.swift; sourceTree = "<group>"; };
 		90965757797701AED44E5086 /* LocalDishAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDishAssistantTests.swift; sourceTree = "<group>"; };
 		932BDF1AA2592DFA4DF89D60 /* Feins.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Feins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD46BF22E3FB079128BA377 /* DishCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishCategory.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 				A636A6465E6ABD1E91662D3B /* IngredientMatcherTests.swift */,
 				90965757797701AED44E5086 /* LocalDishAssistantTests.swift */,
 				051EAFA39AE74DF66D9F355D /* MiscTests.swift */,
+				830335827A27391FDE61F0D8 /* RollingDieTests.swift */,
 			);
 			path = FeinsTests;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				E82474A473748633BCCA43D9 /* DishListView.swift */,
 				2821CD82025657EC314A367C /* FlowLayout.swift */,
 				A0F652F8261C6A2142D829DB /* RecipeView.swift */,
+				6C3AD56E735E6B366C4F54AE /* RollingDie.swift */,
 				4C89D40EB6DA57CAA3074517 /* RootView.swift */,
 				AD10CF708DC584BF7D62D2D8 /* SettingsView.swift */,
 			);
@@ -343,6 +349,7 @@
 				FDD44CFE109E12BCAC80BD84 /* IngredientMatcherTests.swift in Sources */,
 				501866661BCA961956E1DA24 /* LocalDishAssistantTests.swift in Sources */,
 				44E6A6294701F879071EC3ED /* MiscTests.swift in Sources */,
+				177D2828CB5DCA3869F82125 /* RollingDieTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +384,7 @@
 				F8ACD43C6EE41D06F0933124 /* LocalDishAssistant.swift in Sources */,
 				5C42AFB2BB2D0E533F49514A /* RecipeView.swift in Sources */,
 				50FBCCFD13FEC5EAF4B83112 /* ReminderScheduler.swift in Sources */,
+				AD525B2DB8781BFDA6F2CC6C /* RollingDie.swift in Sources */,
 				91C34C4C8CE2FAF731C0E6FB /* RootView.swift in Sources */,
 				AB525EFD204EF6B3C85E03F2 /* SampleData.swift in Sources */,
 				3B07974BEB5EE2FBDEA257ED /* SettingsView.swift in Sources */,
