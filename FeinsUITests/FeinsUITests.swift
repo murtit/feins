@@ -36,6 +36,9 @@ final class FeinsUITests: XCTestCase {
         let field = app.textFields["quickAdd.field"]
         XCTAssertTrue(field.waitForExistence(timeout: 5))
         field.typeText("spagetti carbonara")
+        // Der Simulator zeigt beim ersten Tippen manchmal eine Tastatur-Einführung über der App.
+        let keyboardTip = app.buttons["Continue"]
+        if keyboardTip.waitForExistence(timeout: 1) { keyboardTip.tap() }
         screenshot("01b-eintippen", app)
         app.buttons["quickAdd.submit"].tap()
 
