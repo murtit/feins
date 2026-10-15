@@ -12,7 +12,8 @@ struct ClaudeDishAssistantTests {
         #expect(request.value(forHTTPHeaderField: "x-api-key") == "sk-test")
         #expect(request.value(forHTTPHeaderField: "anthropic-version") == "2023-06-01")
 
-        let body = try #require(JSONSerialization.jsonObject(with: try #require(request.httpBody)) as? [String: Any])
+        let data = try #require(request.httpBody)
+        let body = try #require(try JSONSerialization.jsonObject(with: data) as? [String: Any])
         #expect(body["model"] as? String == "claude-opus-5-5")
         let output = try #require(body["output_config"] as? [String: Any])
         let format = try #require(output["format"] as? [String: Any])
