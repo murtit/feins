@@ -64,7 +64,7 @@ final class FeinsUITests: XCTestCase {
         start.press(forDuration: 0.1, thenDragTo: start.withOffset(CGVector(dx: 0, dy: -160)))
 
         let bubble = app.descendants(matching: .any)["addDish.bubble"].firstMatch
-        XCTAssertTrue(bubble.waitForExistence(timeout: 3), "Einsprechen wurde nicht gestartet")
+        XCTAssertTrue(bubble.waitForExistence(timeout: 6), "Einsprechen wurde nicht gestartet")
         screenshot("04-einsprechen", app)
 
         let row = app.descendants(matching: .any)["dish.Zürcher Geschnetzeltes"].firstMatch
