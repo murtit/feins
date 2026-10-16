@@ -5,8 +5,6 @@ struct SettingsView: View {
     @Environment(AppModel.self) private var model
     @Query private var dishes: [Dish]
     @AppStorage(SettingsKeys.appearance) private var appearance: Appearance = .system
-    @State private var keyDraft = ""
-    @State private var keySaved = false
 
     var body: some View {
         NavigationStack {
@@ -33,32 +31,17 @@ struct SettingsView: View {
 
                 Section {
                     HStack {
-                        Text("Status")
+                        Text("Apple Intelligence")
                         Spacer()
-                        Label(model.hasAPIKey ? "Verbunden" : "Offline-Modus",
-                              systemImage: model.hasAPIKey ? "checkmark.seal.fill" : "wifi.slash")
-                            .foregroundStyle(model.hasAPIKey ? Theme.accent : Theme.muted)
+                        Label(model.aiStatus.title, systemImage: model.aiStatus.systemImage)
+                            .foregroundStyle(model.aiStatus == .ready ? Theme.accent : Theme.muted)
                     }
-                    SecureField("Anthropic API-Schlüssel (sk-ant-…)", text: $keyDraft)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                        .accessibilityIdentifier("settings.apiKey")
-                    Button(keySaved ? "Gespeichert" : "Schlüssel speichern") {
-                        model.updateAPIKey(keyDraft)
-                        keyDraft = ""
-                        keySaved = true
-                    }
-                    .disabled(keyDraft.trimmingCharacters(in: .whitespaces).isEmpty)
-                    if model.hasAPIKey {
-                        Button("Schlüssel entfernen", role: .destructive) {
-                            model.updateAPIKey("")
-                            keySaved = false
-                        }
-                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityIdentifier("settings.ai")
                 } header: {
-                    Text("Claude (KI)")
+                    Text("KI auf dem iPhone")
                 } footer: {
-                    Text("Mit Schlüssel korrigiert Claude deine Eingaben, ordnet sie ein und schreibt Rezepte. Gesendet wird nur der Name des Gerichts bzw. die gewünschten Zutaten. Ohne Schlüssel erkennt Feins bekannte Gerichte offline. Einen Schlüssel erhältst du unter console.anthropic.com. Er wird im Schlüsselbund des iPhones gespeichert.")
+                    Text(model.aiStatus.explanation)
                 }
 
                 Section("Über Feins") {
@@ -69,6 +52,7 @@ struct SettingsView: View {
             .scrollContentBackground(.hidden)
             .feinsScreenBackground()
             .navigationTitle("Einstellungen")
+            .onAppear { model.refreshAIStatus() }
         }
     }
 }

@@ -23,7 +23,9 @@ struct RootView: View {
             model.selectedTab = .chooser
         }
         .onChange(of: scenePhase) { _, phase in
-            guard phase == .active, !model.launch.isUITesting else { return }
+            guard phase == .active else { return }
+            model.refreshAIStatus()
+            guard !model.launch.isUITesting else { return }
             Task { await ReminderSettings.reschedule(dishNames: dishes.map(\.name)) }
         }
     }

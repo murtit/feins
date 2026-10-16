@@ -6,12 +6,13 @@ final class FeinsUITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    private func launch(seed: Bool = false, appearance: String = "light", tab: String? = nil, speech: String? = nil) -> XCUIApplication {
+    private func launch(seed: Bool = false, appearance: String = "light", tab: String? = nil, speech: String? = nil, aiStatus: String? = nil) -> XCUIApplication {
         let app = XCUIApplication()
         app.launchArguments = ["-ui-testing", "-appearance", appearance]
         if seed { app.launchArguments.append("-seed-sample-data") }
         if let speech { app.launchArguments += ["-simulate-speech", speech] }
         if let tab { app.launchArguments += ["-tab", tab] }
+        if let aiStatus { app.launchArguments += ["-ai-status", aiStatus] }
         app.launch()
         return app
     }
@@ -157,6 +158,20 @@ final class FeinsUITests: XCTestCase {
         field.typeText("Marshmallows\n")
         app.buttons["chooser.surprise"].tap()
         XCTAssertTrue(app.descendants(matching: .any)["chooser.empty"].waitForExistence(timeout: 5))
+    }
+
+    /// Kein Schlüssel mehr: Die Einstellungen zeigen nur noch, ob Apple Intelligence auf dem iPhone mitarbeitet.
+    @MainActor
+    func testSettingsShowOnDeviceAIWithoutKeyField() {
+        for (status, label) in [("ready", "Aktiv"), ("unsupported", "Nicht verfügbar")] {
+            let app = launch(tab: "settings", aiStatus: status)
+            let row = app.descendants(matching: .any)["settings.ai"].firstMatch
+            XCTAssertTrue(row.waitForExistence(timeout: 5))
+            XCTAssertTrue(row.label.contains(label), "Status \(status) zeigt „\(row.label)“")
+            XCTAssertFalse(app.secureTextFields.firstMatch.exists, "Es darf kein Schlüsselfeld mehr geben")
+            screenshot("08-ki-\(status)", app)
+            app.terminate()
+        }
     }
 
     /// Screenshots aller Hauptscreens, hell und dunkel.

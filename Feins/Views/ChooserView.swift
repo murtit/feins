@@ -186,9 +186,9 @@ struct ChooserView: View {
         let request = ChooserRequest(source: source, ingredients: ingredients, excluding: shown)
         var pick: DishIdea?
 
-        // Mit API-Schlüssel kommen bei "Auch neue Ideen" ab und zu ganz frische Vorschläge von Claude.
+        // Mit Apple Intelligence kommen bei "Auch neue Ideen" ab und zu ganz frische Vorschläge.
         let hasLocalCandidates = !chooser.candidates(from: mine, for: request).isEmpty
-        if source == .everything, model.hasAPIKey, !hasLocalCandidates || Int.random(in: 0..<3) == 0 {
+        if source == .everything, model.usesOnDeviceAI, !hasLocalCandidates || Int.random(in: 0..<3) == 0 {
             isThinking = true
             let avoiding = mine.map(\.name) + (result.map { [$0.name] } ?? [])
             if let draft = try? await model.assistant.inventIdea(ingredients: ingredients, avoiding: avoiding) {
