@@ -108,11 +108,12 @@ final class SpeechRecognizer {
     }
 
     private func simulate(_ text: String) async {
+        // Lang genug, dass auch ein langsamer CI-Simulator das Zuhören sieht, bevor es vorbei ist.
         state = .listening
-        try? await Task.sleep(for: .seconds(1.2))
+        try? await Task.sleep(for: .seconds(2.5))
         guard state == .listening else { return }
         transcript = text
-        try? await Task.sleep(for: .seconds(0.6))
+        try? await Task.sleep(for: .seconds(1.5))
         if state == .listening { state = .idle }
     }
 

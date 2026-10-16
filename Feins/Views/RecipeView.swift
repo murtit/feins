@@ -11,6 +11,7 @@ struct RecipeView<Footer: View>: View {
     let durationMinutes: Int
     var isEnriching = false
     @ViewBuilder var footer: () -> Footer
+    @Environment(AppModel.self) private var model
 
     var body: some View {
         ScrollView {
@@ -24,7 +25,9 @@ struct RecipeView<Footer: View>: View {
                     }
                     .feinsCard()
                 } else if ingredients.isEmpty && steps.isEmpty {
-                    Text("Noch kein Rezept vorhanden. Hinterlege in den Einstellungen einen Claude API-Schlüssel, dann ergänzt Feins Rezepte automatisch.")
+                    Text(model.aiStatus == .ready
+                         ? "Noch kein Rezept vorhanden."
+                         : "Noch kein Rezept vorhanden. Mit Apple Intelligence schreibt Feins Rezepte selbst, mehr dazu in den Einstellungen.")
                         .foregroundStyle(Theme.muted)
                         .feinsCard()
                 } else {

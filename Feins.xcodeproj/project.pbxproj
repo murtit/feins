@@ -19,16 +19,16 @@
 		538BB85A098F9E3AF9AC35E7 /* AddDishGestureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5565DB45F438D09C3A8621BC /* AddDishGestureTests.swift */; };
 		5BED74F1DAA303F14D28D048 /* FeinsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412F32A3AB20FDF9A177CC5 /* FeinsUITests.swift */; };
 		5C42AFB2BB2D0E533F49514A /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F652F8261C6A2142D829DB /* RecipeView.swift */; };
-		61A00CE15B998E5815D35744 /* ClaudeDishAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A22020876A337AFBD9DD792 /* ClaudeDishAssistantTests.swift */; };
 		627D8E7A55459AA002DFEC95 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCFA9B1F4AE045B13DE5AAA /* SpeechRecognizer.swift */; };
 		66CE839842F6CAC196AC2E1C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF5637AF788396F87D6E02F /* Theme.swift */; };
 		6E6C79D55F834AA5451CA043 /* ChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD4D9829D8CFD510A8B4BB /* ChooserView.swift */; };
 		7741F1E9E782621B211362F0 /* LaunchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB74A9F9EE2005FE45091A5 /* LaunchOptions.swift */; };
-		7EF7E135B177C48CA5BAB5F1 /* APIKeyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2514F6A0EB61B331C88E3D8 /* APIKeyStore.swift */; };
 		85B7C49874D26338695C4695 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5293906C06BC42337E14BC5 /* Dish.swift */; };
+		899FBD7D42A5C601D2ED74F9 /* OnDeviceDishAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75798EC3AEA76DF13A39B30C /* OnDeviceDishAssistantTests.swift */; };
 		89BCB83D606AE3971A31E197 /* DishDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE96348FA7332EBE95185FCB /* DishDraft.swift */; };
 		91C34C4C8CE2FAF731C0E6FB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89D40EB6DA57CAA3074517 /* RootView.swift */; };
 		96F673A0E4804D8DDD6D3080 /* SuggestionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B92B18B1D406ED427F9D35 /* SuggestionCatalog.swift */; };
+		97D0B96292387E8F6A63F880 /* OnDeviceDishAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E7A68653C5038A72E742E0 /* OnDeviceDishAssistant.swift */; };
 		998E6F4C2806017386E3DE67 /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1B20C75EA0693666EA08FB /* AppLog.swift */; };
 		A53985F3B87CA82A07ECD807 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2821CD82025657EC314A367C /* FlowLayout.swift */; };
 		A9A16D0089DEDA4823F35C00 /* DishListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82474A473748633BCCA43D9 /* DishListView.swift */; };
@@ -38,7 +38,6 @@
 		D36BB1D9EA9F38C68DC2716D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B679301DF21555A3BB3507A6 /* Assets.xcassets */; };
 		D4888F7EEC34F13637FD6771 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E722784EB09A044CCA1EEFC /* AppModel.swift */; };
 		DC4BCA6155E668B5E310CC51 /* IngredientMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC2DDDBA39D6D6CE8214AC /* IngredientMatcher.swift */; };
-		F52277D914168A81C7A70D81 /* ClaudeDishAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26880F937748A34F5252AD7F /* ClaudeDishAssistant.swift */; };
 		F6AE4BD345CADCA4F2EE3C54 /* AddDishButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA21EDD7CDCAF5CBC047755 /* AddDishButton.swift */; };
 		F8ACD43C6EE41D06F0933124 /* LocalDishAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDECA84929CB0DBD2A91BB3D /* LocalDishAssistant.swift */; };
 		FDD44CFE109E12BCAC80BD84 /* IngredientMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A636A6465E6ABD1E91662D3B /* IngredientMatcherTests.swift */; };
@@ -66,18 +65,18 @@
 		0F9A0014451022AF8687920B /* FeinsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeinsApp.swift; sourceTree = "<group>"; };
 		12CD4D9829D8CFD510A8B4BB /* ChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooserView.swift; sourceTree = "<group>"; };
 		1E722784EB09A044CCA1EEFC /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
-		26880F937748A34F5252AD7F /* ClaudeDishAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeDishAssistant.swift; sourceTree = "<group>"; };
 		2821CD82025657EC314A367C /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
-		3A22020876A337AFBD9DD792 /* ClaudeDishAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeDishAssistantTests.swift; sourceTree = "<group>"; };
 		3E4777657674D775662DE521 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
 		4C89D40EB6DA57CAA3074517 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		5565DB45F438D09C3A8621BC /* AddDishGestureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDishGestureTests.swift; sourceTree = "<group>"; };
+		59E7A68653C5038A72E742E0 /* OnDeviceDishAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceDishAssistant.swift; sourceTree = "<group>"; };
 		5D7E9248E3B50E41326C0A0F /* FeinsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FeinsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFC2DDDBA39D6D6CE8214AC /* IngredientMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientMatcher.swift; sourceTree = "<group>"; };
 		6B1B20C75EA0693666EA08FB /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		6C3AD56E735E6B366C4F54AE /* RollingDie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingDie.swift; sourceTree = "<group>"; };
 		6EA21EDD7CDCAF5CBC047755 /* AddDishButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDishButton.swift; sourceTree = "<group>"; };
 		724A9A3C87598D288C3B581A /* FeinsUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FeinsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75798EC3AEA76DF13A39B30C /* OnDeviceDishAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceDishAssistantTests.swift; sourceTree = "<group>"; };
 		7CB74A9F9EE2005FE45091A5 /* LaunchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOptions.swift; sourceTree = "<group>"; };
 		7FF5637AF788396F87D6E02F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		830335827A27391FDE61F0D8 /* RollingDieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingDieTests.swift; sourceTree = "<group>"; };
@@ -89,7 +88,6 @@
 		AD10CF708DC584BF7D62D2D8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ADCFA9B1F4AE045B13DE5AAA /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		AE96348FA7332EBE95185FCB /* DishDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDraft.swift; sourceTree = "<group>"; };
-		B2514F6A0EB61B331C88E3D8 /* APIKeyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeyStore.swift; sourceTree = "<group>"; };
 		B5293906C06BC42337E14BC5 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		B679301DF21555A3BB3507A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C29F82A61FA5E5B8D418D8F9 /* DishChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishChooser.swift; sourceTree = "<group>"; };
@@ -106,13 +104,12 @@
 		21FD8174D32EA8BF00772744 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B2514F6A0EB61B331C88E3D8 /* APIKeyStore.swift */,
 				6B1B20C75EA0693666EA08FB /* AppLog.swift */,
-				26880F937748A34F5252AD7F /* ClaudeDishAssistant.swift */,
 				DE9556D0667422418AB7EDBF /* DishAssistant.swift */,
 				C29F82A61FA5E5B8D418D8F9 /* DishChooser.swift */,
 				5EFC2DDDBA39D6D6CE8214AC /* IngredientMatcher.swift */,
 				FDECA84929CB0DBD2A91BB3D /* LocalDishAssistant.swift */,
+				59E7A68653C5038A72E742E0 /* OnDeviceDishAssistant.swift */,
 				3E4777657674D775662DE521 /* ReminderScheduler.swift */,
 				ADCFA9B1F4AE045B13DE5AAA /* SpeechRecognizer.swift */,
 				E8B92B18B1D406ED427F9D35 /* SuggestionCatalog.swift */,
@@ -132,11 +129,11 @@
 			isa = PBXGroup;
 			children = (
 				5565DB45F438D09C3A8621BC /* AddDishGestureTests.swift */,
-				3A22020876A337AFBD9DD792 /* ClaudeDishAssistantTests.swift */,
 				F6BC9542D965A27A51919155 /* DishChooserTests.swift */,
 				A636A6465E6ABD1E91662D3B /* IngredientMatcherTests.swift */,
 				90965757797701AED44E5086 /* LocalDishAssistantTests.swift */,
 				051EAFA39AE74DF66D9F355D /* MiscTests.swift */,
+				75798EC3AEA76DF13A39B30C /* OnDeviceDishAssistantTests.swift */,
 				830335827A27391FDE61F0D8 /* RollingDieTests.swift */,
 			);
 			path = FeinsTests;
@@ -344,11 +341,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				538BB85A098F9E3AF9AC35E7 /* AddDishGestureTests.swift in Sources */,
-				61A00CE15B998E5815D35744 /* ClaudeDishAssistantTests.swift in Sources */,
 				C7EAAA95A58704B1E56ED16F /* DishChooserTests.swift in Sources */,
 				FDD44CFE109E12BCAC80BD84 /* IngredientMatcherTests.swift in Sources */,
 				501866661BCA961956E1DA24 /* LocalDishAssistantTests.swift in Sources */,
 				44E6A6294701F879071EC3ED /* MiscTests.swift in Sources */,
+				899FBD7D42A5C601D2ED74F9 /* OnDeviceDishAssistantTests.swift in Sources */,
 				177D2828CB5DCA3869F82125 /* RollingDieTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,12 +362,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EF7E135B177C48CA5BAB5F1 /* APIKeyStore.swift in Sources */,
 				F6AE4BD345CADCA4F2EE3C54 /* AddDishButton.swift in Sources */,
 				998E6F4C2806017386E3DE67 /* AppLog.swift in Sources */,
 				D4888F7EEC34F13637FD6771 /* AppModel.swift in Sources */,
 				6E6C79D55F834AA5451CA043 /* ChooserView.swift in Sources */,
-				F52277D914168A81C7A70D81 /* ClaudeDishAssistant.swift in Sources */,
 				85B7C49874D26338695C4695 /* Dish.swift in Sources */,
 				1BAD89BA6A18570439997AB3 /* DishAssistant.swift in Sources */,
 				3B7210FED56CF42B3F1E2511 /* DishCategory.swift in Sources */,
@@ -382,6 +377,7 @@
 				DC4BCA6155E668B5E310CC51 /* IngredientMatcher.swift in Sources */,
 				7741F1E9E782621B211362F0 /* LaunchOptions.swift in Sources */,
 				F8ACD43C6EE41D06F0933124 /* LocalDishAssistant.swift in Sources */,
+				97D0B96292387E8F6A63F880 /* OnDeviceDishAssistant.swift in Sources */,
 				5C42AFB2BB2D0E533F49514A /* RecipeView.swift in Sources */,
 				50FBCCFD13FEC5EAF4B83112 /* ReminderScheduler.swift in Sources */,
 				AD525B2DB8781BFDA6F2CC6C /* RollingDie.swift in Sources */,

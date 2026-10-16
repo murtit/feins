@@ -8,10 +8,10 @@ Simple iOS-App, mit der man Gerichte, die einem im Alltag einfallen, abspeichern
 
 - **Gericht festhalten**, so einfach wie möglich: auf den runden Knopf unten rechts tippen und eintippen, oder den Knopf nach oben ziehen und einsprechen (Spracherkennung auf dem iPhone, Schweizer Hochdeutsch).
 - **Automatisch verfeinert:** Tipp- und Erkennungsfehler werden korrigiert, das Gericht wird kategorisiert und mit einem Rezept (Zutaten, Schritte, Dauer) ergänzt.
-  - Mit Claude-API-Schlüssel: Claude (`claude-opus-5-5`) übernimmt das.
-  - Ohne Schlüssel: Offline-Modus erkennt rund 30 bekannte Gerichte auch mit Tippfehlern und ordnet über Schlüsselwörter ein.
+  - Mit Apple Intelligence (ab iPhone 15 Pro): Apples Sprachmodell rechnet direkt auf dem iPhone. Gratis, ohne Konto oder Schlüssel, offline, nichts verlässt das Gerät.
+  - Ohne Apple Intelligence: Offline-Modus erkennt rund 30 bekannte Gerichte auch mit Tippfehlern und ordnet über Schlüsselwörter ein.
 - **Random Chooser „Was gits feins?“:** würfelt ein Gericht: Ein 3D-Würfel springt, überschlägt sich und landet, dann kommt der Vorschlag. Antippen von Würfel oder Knopf genügt.
-  - Quelle wählbar: *Nur meine* oder *Auch neue Ideen* (eingebauter Katalog, mit Schlüssel zusätzlich frische Ideen von Claude).
+  - Quelle wählbar: *Nur meine* oder *Auch neue Ideen* (eingebauter Katalog, mit Apple Intelligence zusätzlich frische Ideen).
   - Optional Zutaten angeben: Es kommen nur Gerichte, die diese Zutaten verwenden.
 - **Erinnerungen** zum Mittag- und Abendessen mit einem Vorschlag aus den eigenen Gerichten.
 - **Design:** warmes Papier, Tinte und ein einziger Akzent (Paprika). Hell, Dunkel oder Automatisch.
@@ -30,7 +30,7 @@ make test     # Unit- und UI-Tests im Simulator
 
 Das Projekt wird aus `project.yml` mit [XcodeGen](https://github.com/yonaskolb/XcodeGen) erzeugt und ist eingecheckt. Wer `project.yml` ändert, kann `brew install xcodegen && make project` ausführen; auf Pull Requests generiert und committet der Workflow *Xcode-Projekt* das Projekt sonst automatisch.
 
-**Claude API lokal nutzen:** in der App unter *Einstellungen → Claude (KI)* den Schlüssel eintragen (wird im Schlüsselbund gespeichert), oder beim Entwickeln im Xcode-Schema die Umgebungsvariable `ANTHROPIC_API_KEY` setzen.
+**KI ausprobieren:** Die KI läuft im Simulator nur, wenn auf dem Mac Apple Intelligence eingeschaltet ist (Systemeinstellungen → *Apple Intelligence & Siri*). Den Status zeigt die App unter *Einstellungen → KI auf dem iPhone*. Es braucht keinen Schlüssel und keine Kosten.
 
 ### Aufbau
 
@@ -38,7 +38,7 @@ Das Projekt wird aus `project.yml` mit [XcodeGen](https://github.com/yonaskolb/X
 | --- | --- |
 | `Feins/App` | Einstieg, App-Zustand, Startargumente für Tests |
 | `Feins/Models` | SwiftData-Modell `Dish`, Kategorien, Entwürfe/Ideen |
-| `Feins/Services` | Claude-Anbindung, Offline-Assistent, Random-Chooser-Logik, Spracheingabe, Erinnerungen |
+| `Feins/Services` | KI auf dem iPhone (Foundation Models), Offline-Assistent, Random-Chooser-Logik, Spracheingabe, Erinnerungen |
 | `Feins/Views` | SwiftUI-Screens |
 | `Feins/Design` | Farben, Schriften, Smiley |
 | `FeinsTests` | Unit-Tests (Swift Testing) |
@@ -57,7 +57,6 @@ Das Projekt wird aus `project.yml` mit [XcodeGen](https://github.com/yonaskolb/X
 
 | Secret | Pflicht | Wofür |
 | --- | --- | --- |
-| `ANTHROPIC_API_KEY` | optional | Aktiviert in der CI einen Live-Test gegen die echte Claude API. |
 | `APPLE_TEAM_ID` | für TestFlight | 10-stellige Team-ID aus dem Apple Developer Account. |
 | `ASC_KEY_ID` | für TestFlight | Key-ID eines App Store Connect API-Schlüssels (Rolle *Admin*, wegen Cloud-Signing). |
 | `ASC_ISSUER_ID` | für TestFlight | Issuer-ID von derselben Seite in App Store Connect. |

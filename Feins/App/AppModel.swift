@@ -23,11 +23,9 @@ final class AppModel {
     let container: ModelContainer
     let speech: SpeechRecognizer
     var selectedTab: AppTab
-    private(set) var apiKey: String?
+    private(set) var aiStatus: OnDeviceAIStatus = .unsupported
     private(set) var enriching: Set<UUID> = []
     var lastError: String?
-
-    @ObservationIgnored private let keyStore = APIKeyStore()
 
     init(launch: LaunchOptions) {
         self.launch = launch
@@ -42,22 +40,23 @@ final class AppModel {
         } catch {
             fatalError("SwiftData-Container konnte nicht erstellt werden: \(error)")
         }
-        apiKey = launch.isUITesting ? nil : keyStore.load()
         speech = SpeechRecognizer(simulatedTranscript: launch.simulatedSpeech)
         if launch.seedSampleData {
             SampleData.insert(into: container.mainContext)
         }
+        refreshAIStatus()
     }
 
-    var hasAPIKey: Bool { apiKey != nil }
+    /// Ob die KI auf dem iPhone rechnen darf. UI-Tests bleiben beim berechenbaren Offline-Modus.
+    var usesOnDeviceAI: Bool { aiStatus == .ready && !launch.isUITesting }
 
     var assistant: any DishAssistant {
-        SmartDishAssistant(primary: apiKey.map { ClaudeDishAssistant(apiKey: $0) })
+        SmartDishAssistant(primary: usesOnDeviceAI ? OnDeviceDishAssistant() : nil)
     }
 
-    func updateAPIKey(_ key: String) {
-        keyStore.save(key)
-        apiKey = keyStore.load()
+    /// Apple Intelligence kann jederzeit ein- oder ausgeschaltet werden oder fertig herunterladen.
+    func refreshAIStatus() {
+        aiStatus = launch.forcedAIStatus ?? OnDeviceAIStatus.current
     }
 
     /// Speichert die Eingabe sofort und verfeinert sie danach im Hintergrund.

@@ -8,7 +8,7 @@ protocol DishAssistant: Sendable {
     func inventIdea(ingredients: [String], avoiding: [String]) async throws -> DishDraft
 }
 
-/// Nutzt Claude, wenn ein API-Schlüssel hinterlegt ist, und fällt sonst (oder bei Fehlern) auf die lokale Logik zurück.
+/// Nutzt die KI auf dem iPhone, wenn sie verfügbar ist, und fällt sonst (oder bei Fehlern) auf die lokale Logik zurück.
 struct SmartDishAssistant: DishAssistant {
     var primary: (any DishAssistant)?
     var fallback: any DishAssistant = LocalDishAssistant()
@@ -16,7 +16,7 @@ struct SmartDishAssistant: DishAssistant {
     func enrich(_ rawInput: String) async throws -> DishDraft {
         if let primary {
             do { return try await primary.enrich(rawInput) } catch is CancellationError { throw CancellationError() } catch {
-                AppLog.assistant.error("Claude-Anreicherung fehlgeschlagen: \(error.localizedDescription, privacy: .public)")
+                AppLog.assistant.error("KI-Anreicherung fehlgeschlagen: \(error.localizedDescription, privacy: .public)")
             }
         }
         return try await fallback.enrich(rawInput)
@@ -25,7 +25,7 @@ struct SmartDishAssistant: DishAssistant {
     func inventIdea(ingredients: [String], avoiding: [String]) async throws -> DishDraft {
         if let primary {
             do { return try await primary.inventIdea(ingredients: ingredients, avoiding: avoiding) } catch is CancellationError { throw CancellationError() } catch {
-                AppLog.assistant.error("Claude-Idee fehlgeschlagen: \(error.localizedDescription, privacy: .public)")
+                AppLog.assistant.error("KI-Idee fehlgeschlagen: \(error.localizedDescription, privacy: .public)")
             }
         }
         return try await fallback.inventIdea(ingredients: ingredients, avoiding: avoiding)
