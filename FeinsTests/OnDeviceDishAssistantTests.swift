@@ -42,6 +42,24 @@ struct OnDeviceDishAssistantTests {
         #expect(OnDeviceAIStatus(rawValue: status.rawValue) == status)
     }
 
+    @Test("Die drei Prüfschritte zeigen, wo es hängt", arguments: [
+        (OnDeviceAIStatus.unsupported, [AICheck.State.failed, .skipped, .skipped]),
+        (.notEnabled, [.done, .failed, .skipped]),
+        (.notReady, [.done, .done, .inProgress]),
+        (.ready, [.done, .done, .done]),
+    ])
+    func checks(status: OnDeviceAIStatus, expected: [AICheck.State]) {
+        #expect(status.checks.map(\.state) == expected)
+    }
+
+    @Test("Knopf zu den Einstellungen nur, wenn man dort etwas tun kann")
+    func settingsButton() {
+        #expect(OnDeviceAIStatus.notEnabled.canFixInSettings)
+        #expect(OnDeviceAIStatus.notReady.canFixInSettings)
+        #expect(!OnDeviceAIStatus.ready.canFixInSettings)
+        #expect(!OnDeviceAIStatus.unsupported.canFixInSettings)
+    }
+
     @Test("Ohne Schlüssel und ohne Konto: Feins fragt nie nach einem API-Schlüssel")
     @MainActor
     func noKeyNeeded() {

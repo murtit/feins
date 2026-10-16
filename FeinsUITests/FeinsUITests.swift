@@ -160,16 +160,26 @@ final class FeinsUITests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any)["chooser.empty"].waitForExistence(timeout: 5))
     }
 
-    /// Kein Schlüssel mehr: Die Einstellungen zeigen nur noch, ob Apple Intelligence auf dem iPhone mitarbeitet.
+    /// Kein Schlüssel mehr: Die Einstellungen prüfen Schritt für Schritt, ob Apple Intelligence mitarbeiten kann.
     @MainActor
-    func testSettingsShowOnDeviceAIWithoutKeyField() {
-        for (status, label) in [("ready", "Aktiv"), ("unsupported", "Nicht verfügbar")] {
-            let app = launch(tab: "settings", aiStatus: status)
+    func testSettingsShowOnDeviceAIChecks() {
+        let cases: [(status: String, label: String, button: Bool)] = [
+            ("ready", "Aktiv", false),
+            ("notReady", "Wird geladen", true),
+            ("notEnabled", "Ausgeschaltet", true),
+            ("unsupported", "Nicht verfügbar", false),
+        ]
+        for item in cases {
+            let app = launch(tab: "settings", aiStatus: item.status)
             let row = app.descendants(matching: .any)["settings.ai"].firstMatch
             XCTAssertTrue(row.waitForExistence(timeout: 5))
-            XCTAssertTrue(row.label.contains(label), "Status \(status) zeigt „\(row.label)“")
+            XCTAssertTrue(row.label.contains(item.label), "Status \(item.status) zeigt „\(row.label)“")
+            for check in ["supported", "enabled", "loaded"] {
+                XCTAssertTrue(app.descendants(matching: .any)["settings.ai.\(check)"].firstMatch.exists, "Prüfschritt \(check) fehlt")
+            }
+            XCTAssertEqual(app.buttons["settings.ai.open"].exists, item.button, "Einstellungen-Knopf bei \(item.status)")
             XCTAssertFalse(app.secureTextFields.firstMatch.exists, "Es darf kein Schlüsselfeld mehr geben")
-            screenshot("08-ki-\(status)", app)
+            screenshot("08-ki-\(item.status)", app)
             app.terminate()
         }
     }
